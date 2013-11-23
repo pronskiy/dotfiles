@@ -1,3 +1,6 @@
+[user]
+	name = Roman Pronskiy
+	email = roman@pronskiy.com
 [alias]
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -40,6 +43,16 @@
 
 	# Interactive rebase with the given number of latest commits
 	reb = "!r() { git rebase -i HEAD~$1; }; r"
+	
+	# My
+	lg = !git -c color.ui=always log --pretty=format:'%C(auto,yellow)%h%Creset %C(auto,green blink)%<(15,trunc)%an%Creset %C(auto, cyan reverse)%<(12,trunc)%ar%Creset %s' --graph -n20
+	st = status -sb
+	who = shortlog -s --
+	bra = branch -a
+	pr = pull --rebase
+	in = "!git remote update -p; git log ..@{u}"
+	out = log @{u}..
+	backup = !file=../`git describe`.tar && echo \"Creating `readlink -f $file`\" && tar cf $file .
 
 	# Remove the old tag with this name and tag the latest commit with it.
 	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
@@ -102,6 +115,10 @@
 	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
+
+	# 
+	autocrlf = input
+	safecrlf = true
 
 [color]
 
